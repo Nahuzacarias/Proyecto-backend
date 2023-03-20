@@ -22,26 +22,19 @@ class ProductManager {
             stock: stock,
             id: ++id_producto,
 
-        }
-
-        this.products.push(producto);
-        return this.products
-
-    }
-
-
-    validar(code, producto,) {
+        };
 
         if (producto.code === code || producto.code == null) {
             return "El código no debe ser el mismo o estar vacío,por favor ingrese otro."
         }
         else {
 
-
+            this.products.push(producto);
+            return this.products
         }
 
-
     }
+
     getProductById(id_producto) {
         let producto = this.products.find(producto => producto.id === id_producto)
 
