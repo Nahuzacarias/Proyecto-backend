@@ -12,18 +12,14 @@ const env = async () => {
         thumbnail: "thumbnail",
         code: "1",
         stock: "5",
-        id: "1",
     }
 
     let result = await productos.addProduct(producto);
 
     console.log(result)
 
-let produc =await productos.consultarProducto()
+let produc = await productos.consultarProductos()
 console.log (produc)
 
-
 }
-
-
 env()
