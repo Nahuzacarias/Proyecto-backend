@@ -2,13 +2,13 @@ import fs from "fs";
 
 export default class ProductManager {
     constructor() {
-        this.path = "./entrega2/productos.json";
+        this.path = "../src/Productos.json";
     }
 
     getProducts = async () => {
         try {
             if (fs.existsSync(this.path)) {
-                const data = await fs.promises.readFile(this.path, "utf8");
+                const data = await fs.promises.readFile(this.path, "utf-8");
                 const products = JSON.parse(data);
                 return products
             } else {
