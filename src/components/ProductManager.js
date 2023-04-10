@@ -2,7 +2,7 @@ import fs from "fs";
 
 export default class ProductManager {
     constructor() {
-        this.path = "../src/Productos.json";
+        this.path = "src\Productos.json";
     }
 
     getProducts = async () => {
@@ -63,7 +63,7 @@ export default class ProductManager {
             const products = await this.getProducts();
             const producto = products.find((producto) => producto.id == id_producto);
             if (producto) {
-                return console.log(producto);
+                return (producto);
             } else {
                 return "not found";
             }
