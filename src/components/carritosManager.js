@@ -1,7 +1,7 @@
 import fs from "fs";
 
 
-const path = "./routes/carrito.js"
+const path = "./src/carritos.json"
 
 export default class CarritosManager {
 
@@ -67,21 +67,42 @@ addCarrito = async () => {
     let carrito = {
 
         products: [],
+    };
+
+
+    if (carritos.length ===0){
+
+carrito.id = 1;
+
+    } else{
+
+carrito.id = carritos[carritos.length - 1].id +1 ;
+
     }
 
+carritos.push(carrito);
+
+
+await fs.promises.writefiles(path,JSON.stringify(carritos,null,"\t"));
+return carrito
+}
+
+
+getCarritoById= async (id_producto) => {
+
+const products = await this.getCarritos();
+
+let producto = products.find((producto)=> producto.id === id_producto)
+
+
+if(producto){
+
+return producto;
+
+
+}else{ return console.log ("no existe")
 
 
 }
-
-})
-
-
-}
-
-
-)
-
-}
-
 
 }

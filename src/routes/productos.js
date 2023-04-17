@@ -28,10 +28,10 @@ router.get("/", async (req, res,) => {
     })
 
         
-    router.post('/', (req, res) => {
-        const agregarprod = req.body.agregarprod;
+    router.post('/', async (req, res) => {
+        const agregarprod = req.body
       
-        const id_producto = productmanager.getProducts(agregarprod)
+        const id_producto = await addProduct(agregarprod)
         const nuevoProducto = {
           id: id_producto,
           title: "ryzen 9",
@@ -55,7 +55,7 @@ router.get("/", async (req, res,) => {
       
         const { title, description, code, price, status, stock, category, thumbnail } = req.body;
       
-        const updatedProduct = await productmanager.updateProductById(id_producto, {
+        const updatedProduct = await productmanager.updateProduct(id_producto, {
           title,
           description,
           code,
@@ -72,7 +72,7 @@ router.get("/", async (req, res,) => {
       router.delete("/:id", async (req, res) => {
         const id_producto = req.params.id;
       
-        const deletedProduct = await productmanager.deleteProductById(id_producto);
+        const deletedProduct = await productmanager.deleteProduct(id_producto);
       
         res.send(deletedProduct);
       });
