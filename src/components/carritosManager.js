@@ -48,7 +48,8 @@ export default class CarritosManager {
             return carritos;
         }
 
-        else { return [] }
+        else { return [] 
+        }
 
     }
     getCarrito = async (idCart) => {

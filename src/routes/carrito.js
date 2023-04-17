@@ -5,13 +5,20 @@ const router= Router () ;
 const manager = new CarritosManager();
 
 
-router.post("/",async (req,res)=>{
-let carritoNuevo = await manager.addCarrito();
-res.send ({carritoNuevo});
+router.post('/',async (req,res)=>{
+    try{
+        return res.status(200).send(await manager.addCarrito());
+    }catch(err){
+        res.status(400).send({
+            status: "Error",
+            msg: `El total de carritos no se puede visualizar.`
+  });
+}
+});
 
-})
 
-router.get("/:cid",async (req,res)=>{
+
+router.get('/:cid',async (req,res)=>{
     const id = parseInt(req.params.cid);
     let carrito = await manager.getCarrito(id)
     
@@ -21,7 +28,7 @@ router.get("/:cid",async (req,res)=>{
 
 
 
-router.post("/:cid/product/:pid",async (req,res)=>{
+router.post('/:cid/product/:pid',async (req,res)=>{
 
 try{
 
