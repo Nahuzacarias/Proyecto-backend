@@ -11,13 +11,13 @@ res.send ({carritoNuevo});
 
 })
 
-router.get("/cid",async (req,res)=>{
+router.get("/:cid",async (req,res)=>{
     const id = parseInt(req.params.cid);
     let carrito = await manager.getCarrito(id)
     
     res.send ({carrito});
     
-    });
+});
 
 
 

@@ -28,10 +28,10 @@ router.get("/", async (req, res,) => {
     })
 
         
-    router.post('/', async (req, res) => {
+    router.post('/',  (req, res) => {
         const agregarprod = req.body
       
-        const id_producto = await addProduct(agregarprod)
+        const id_producto =  addProduct(agregarprod)
         const nuevoProducto = {
           id: id_producto,
           title: "ryzen 9",

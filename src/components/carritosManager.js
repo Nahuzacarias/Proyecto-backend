@@ -1,7 +1,7 @@
 import fs from "fs";
 
 
-const path = "./src/carritos.json"
+const path = "src\carritos.json"
 
 export default class CarritosManager {
 
@@ -32,7 +32,7 @@ export default class CarritosManager {
             console.log(productosInCart);
 
         }
-        await fs.promises.writefile(path, JSON.stringify(carritos, null, "\t"));
+        await fs.promises.writeFile(path, JSON.stringify(carritos, null, "\t"));
         return carritosFiltrados;
 
     }
@@ -51,58 +51,60 @@ export default class CarritosManager {
         else { return [] }
 
     }
+    getCarrito = async (idCart) => {
+
+        const carritos = await this.getCarritos();
+        console.log(carritos);
+        const carrito = carritos.find((cart) => cart.id == idCart);
+    
+    }
+    addCarrito = async () => {
+
+        const carritos = await this.getCarritos()
+            ;
+        let carrito = {
+    
+            products: [],
+        };
+    
+    
+        if (carritos.length ===0){
+    
+    carrito.id = 1;
+    
+        } else{
+    
+    carrito.id = carritos[carritos.length - 1].id +1 ;
+    
+        }
+    
+    carritos.push(carrito);
+    
+    
+    await fs.promises.writeFiles(path,JSON.stringify(carritos,null,"\t"));
+    return carrito
+    }
+    getCarritoById= async (id_producto) => {
+
+        const products = await this.getCarritos();
+        
+        let producto = products.find((producto)=> producto.id === id_producto)
+        
+        
+        if(producto){
+        
+        return producto;
+        
+        
+        }else{ return console.log ("no existe")
+        
+        
+        }
+        
+        }
 };
 
-getCarrito = async (idCart) => {
-
-    const carritos = await this.getCarritos();
-    console.log(carritos);
-    const carrito = carritos.find((cart) => cart.id == idCart);
-
-}
-addCarrito = async () => {
-
-    const carritos = await this.getCarritos()
-        ;
-    let carrito = {
-
-        products: [],
-    };
 
 
-    if (carritos.length ===0){
-
-carrito.id = 1;
-
-    } else{
-
-carrito.id = carritos[carritos.length - 1].id +1 ;
-
-    }
-
-carritos.push(carrito);
 
 
-await fs.promises.writefiles(path,JSON.stringify(carritos,null,"\t"));
-return carrito
-}
-
-
-getCarritoById= async (id_producto) => {
-
-const products = await this.getCarritos();
-
-let producto = products.find((producto)=> producto.id === id_producto)
-
-
-if(producto){
-
-return producto;
-
-
-}else{ return console.log ("no existe")
-
-
-}
-
-}
